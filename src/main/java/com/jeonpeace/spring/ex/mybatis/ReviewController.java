@@ -1,0 +1,31 @@
+package com.jeonpeace.spring.ex.mybatis;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
+
+import com.jeonpeace.spring.ex.mybatis.domain.Review;
+import com.jeonpeace.spring.ex.mybatis.service.ReviewService;
+
+@Controller
+public class ReviewController {
+
+	@Autowired
+	private ReviewService reviewService;
+	
+	// parameter로 전달 받은 id와 일치하는 리뷰 정보를 json으로 Response 담는다.
+	@RequestMapping("/mydatis/review")
+	@ResponseBody
+	public Review review(@RequestParam("id") int id) {
+		// reqeust Parameter
+		// request.getParameter("id"); (servlet)
+		
+		Review review = reviewService.getReview(id);
+		
+		return review;
+		
+	}
+	
+}
