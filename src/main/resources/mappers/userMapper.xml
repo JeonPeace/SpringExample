@@ -18,4 +18,41 @@
 			`id` DESC
 		LIMIT 1
 	</select>
+	
+	<insert id="insertUser" parameterType="com.jeonpeace.spring.ex.mvc.domain.User">
+		INSERT INTO
+			`new_user`
+		(
+			`name`
+			, `yyyymmdd`
+			, `email`
+			, `introduce`	
+		)
+		VALUE
+		(
+			#{name}
+			, #{birthday}
+			, #{email}
+			, #{introduce}
+		)
+	</insert>
+	
+	<insert id="insertUserByObject" parameterType="com.jeonpeace.spring.ex.mvc.domain.User"
+	useGeneratedKeys="true" keyProperty="id">
+		INSERT INTO
+			`new_user`
+		(
+			`name`
+			, `yyyymmdd`
+			, `email`
+			, `introduce`	
+		)
+		VALUE
+		(
+			#{name}
+			, #{yyyymmdd}
+			, #{email}
+			, #{introduce}
+		)
+	</insert>
 </mapper>
