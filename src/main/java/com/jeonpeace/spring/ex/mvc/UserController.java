@@ -1,5 +1,8 @@
 package com.jeonpeace.spring.ex.mvc;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -57,6 +60,22 @@ public class UserController {
 	@GetMapping("/input")
 	public String userINput() {
 		return "mvc/userInput";
+	}
+	
+	@GetMapping("/duplicate-email")
+	public Map<String, Boolean> isDuplicateEmail(@RequestParam("email") String email) {
+		boolean isDuplicate = userService.isDuplicateEmail(email);
+		
+		Map<String, Boolean> resultMap = new HashMap<>();
+		// {"isDuplicate":true}
+		// {"isDuplicate":false}
+		if(isDuplicate) {
+			resultMap.put("isDuplicate", true);
+		}else {
+			resultMap.put("isDuplicate", false);
+		}
+		
+		return resultMap;
 	}
 	
 }
