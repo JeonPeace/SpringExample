@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.jeonpeace.spring.ex.mvc.domain.User;
 import com.jeonpeace.spring.ex.mvc.service.UserService;
@@ -63,6 +64,7 @@ public class UserController {
 	}
 	
 	@GetMapping("/duplicate-email")
+	@ResponseBody
 	public Map<String, Boolean> isDuplicateEmail(@RequestParam("email") String email) {
 		boolean isDuplicate = userService.isDuplicateEmail(email);
 		
